@@ -1,0 +1,12 @@
+config:
+  gcp-rails:clusterPassword:
+    secure: AAABAL+x9butXlNMHy+5diBdXrwQI1OIK7VV9K9X6DYZDkT4rZT5hDGeS3hknTDX
+  gcp-rails:dbPassword:
+    secure: AAABALFJ3hais54TA4L7HJWLoVccA28C86hqjpUZvTNXEeqnhE0YvmRk
+  gcp-rails:dbUsername: rails-test
+  gcp-rails:dockerPassword:
+    secure: AAABAPJHmssOBUdexA9JtZ2R55+Xg0xKigasZZoxRyrSjsYoS11Smzg=
+  gcp-rails:dockerUsername: tsuayumu
+  gcp-rails:masterVersion: ""
+  gcp:project: test-25245-264913
+  gcp:zone: us-west1-a
