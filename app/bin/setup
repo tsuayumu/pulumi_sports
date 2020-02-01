@@ -28,12 +28,21 @@ FileUtils.chdir APP_ROOT do
   # puts "\n== insert Initialize data =="
   # system! "bin/rake db:seed"
 
+  puts "\n== Create Database =="
+  system! "bin/rails db:create"
+
+  puts "\n== Create Table =="
+  system! "bundle exec ridgepole -c config/database.yml -E production --apply -f db/Schemafile"
+
   puts "\n== Create League and team =="
   system! "bin/rails runner batch/init.rb"
 
   puts "\n== Create Player =="
   system! "bin/rails runner batch/players.rb"
 
+  puts "\n== Precompile =="
+  system! "bin/rails assets:precompile"
+
   puts "\n== Starting application server =="
-  system! "bin/rails restart"
+  system! "bin/rails s -p 3000"
 end

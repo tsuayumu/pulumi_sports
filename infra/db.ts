@@ -5,7 +5,7 @@ import * as config from "./config";
 
 // Provision a database for our Rails app.
 export const instance = new gcp.sql.DatabaseInstance("web-db", {
-    databaseVersion: "POSTGRES_9_6",
+    databaseVersion: "MYSQL_5_7",
     settings: {
         tier: "db-f1-micro",
         ipConfiguration: {

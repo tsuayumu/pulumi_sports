@@ -1,0 +1,8 @@
+| 会員登録
+
+div
+	= form_for @user do |f|
+		= render 'form', f: f
+		div.buttons
+			= f.submit '登録'
+			= link_to 'キャンセル', :root

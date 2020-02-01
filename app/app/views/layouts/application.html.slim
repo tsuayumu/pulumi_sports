@@ -1,0 +1,22 @@
+html
+	head
+		title
+			| BASEBALL
+
+		= stylesheet_link_tag "application.css", :media => "all"
+
+		link rel="stylesheet" href="/assets/scss/style.css"
+		link rel="stylesheet" href="/assets/css/uikit.almost-flat.min.css"
+		link rel="stylesheet" href="/assets/css/uikit.gradient.min.css"
+		link rel="stylesheet" href="/assets/css/uikit.min.css"
+		script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+		script src="/assets/original.js"
+		script src="/assets/uikit.min.js"	
+		= csrf_meta_tags
+		meta[content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"]
+	body#body
+		= render partial: "shared/header"
+
+		== yield
+
+		= render partial: "shared/footer"

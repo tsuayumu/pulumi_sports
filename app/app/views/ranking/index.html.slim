@@ -1,0 +1,126 @@
+div[id="Giants"]
+	div.uk-container.uk-container-center
+		h1.page-tit.white
+			| #{@year}順位予想
+		div.form-content
+			= form_for @ranking_form, url: :create_ranking do |f|
+				h2.white
+					| 打順入力
+				- 6.times do |n|	
+					= f.fields_for "rankings[#{n}]" do |m|
+						div.block
+							| #{n+1}位: #{m.select :team_id, @select_teams, required: true}
+							= m.hidden_field :rank, value: n+1
+				= f.hidden_field :league_id, value: @league.id
+				= f.hidden_field :year, value: @year
+				// | user: #{f.text_field :user_id}
+				= f.submit '投稿'
+					p
+						| ＊デフォルトは管理人予想
+
+		h2.white
+			| 投稿一覧#{@rankings.count}件
+
+		div.hidden-ss
+			- @rankings.each do |ranking|
+				div.bbs-contet.uk-grid[id="#{ranking.id * 10}"]
+					section.uk-width-2-5.member[style="text-align: center;"]
+						div.back-brack
+							| 予想者： #{ranking.user_id}
+							table[border="0"  width="80%" style="color: white"]
+								tr[style="text-align: center"]
+									td
+										| 
+									td
+										| チーム名
+									td
+										| 打率
+									td
+										| 本塁打
+									td
+										|　打点
+									- ranking.ranking.each_with_index do |order, index|
+										tr[style="text-align: center"]
+											- unless false
+												td
+													| #{index+1}
+												td
+													| #{ranking.id}
+												td
+													| 
+												td
+													| 
+												td
+													| 
+											- else
+												td
+													| #{index+1}
+												td
+													| 
+					/ section.uk-width-3-5.coment
+					/ 	h3
+					/ 		| コメント
+					/ 	= form_for @comment_form, url: :create_opening_starting_lineup_comment do |f|
+					/ 		| 感想: #{f.text_field :comment, required: true}
+					/ 		= f.hidden_field :opening_starting_lineup_id, value: opening_lineup.id
+					/ 		- if current_user.present?
+					/ 			= f.hidden_field :user_id, value: current_user.id
+					/ 		= f.submit '投稿'
+					/ 	div.text-coment
+					/ 		- comments = opening_starting_lineup_comments(opening_lineup.id)
+					/ 		- if comments.present?
+					/ 			- comments.each do |comment|
+					/ 				p
+					/ 					|　#{comment.comment}   #{comment.updated_at}
+
+		/ div.visible-ss
+		/ 	- @opening_lineups.each do |opening_lineup|
+		/ 		div#test.bbs-content.uk-container.uk-container-center
+		/ 			section.member[style="text-align: center;"]
+		/ 				| 予想者： #{opening_lineup.user_id}
+		/ 				table[border="0"  width="100%" style="color: white"]
+		/ 					tr[style="text-align: center"]
+		/ 						td
+		/ 							| 
+		/ 						td
+		/ 							| 選手名
+		/ 						td
+		/ 							| 打率
+		/ 						td
+		/ 							| 本塁打
+		/ 						td
+		/ 							|　打点
+		/ 					- opening_lineup.lineup.each_with_index do |order, index|
+		/ 						- player = order.player
+		/ 						tr[style="text-align: center"]
+		/ 							- unless player.player_record.nil?
+		/ 								td
+		/ 									| #{index+1}
+		/ 								td
+		/ 									| #{player.name.gsub(/\p{blank}/," ")}
+		/ 								td
+		/ 									| .#{(player.player_record.average*1000).floor}
+		/ 								td
+		/ 									| #{player.player_record.homerun}
+		/ 								td
+		/ 									| #{player.player_record.rbi}
+		/ 							- else
+		/ 								td
+		/ 									| #{index+1}
+		/ 								td
+		/ 									| #{player.name.gsub(/\p{blank}/," ")}									
+		/ 			section.coment
+		/ 				h3[style="padding:10px 0 0 0;"]
+		/ 					| コメント
+		/ 				= form_for @comment_form, url: :create_opening_starting_lineup_comment do |f|
+		/ 					| 感想: #{f.text_field :comment, required: true}
+		/ 					= f.hidden_field :opening_starting_lineup_id, value: opening_lineup.id
+		/ 					- if current_user.present?
+		/ 						= f.hidden_field :user_id, value: current_user.id
+		/ 					= f.submit '投稿'
+		/ 				div.text-coment
+		/ 					- comments = opening_starting_lineup_comments(opening_lineup.id)
+		/ 					- if comments.present?
+		/ 						- comments.each do |comment|
+		/ 							p
+		/ 								|　#{comment.comment}   #{comment.updated_at}

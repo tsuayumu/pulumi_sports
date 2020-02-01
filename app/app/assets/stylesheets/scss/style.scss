@@ -1,0 +1,508 @@
+@charset "UTF-8";
+
+body {
+	font-family: 'Lora', serif;
+}
+h2 {
+	font-size: 30px;
+}
+.tit {
+	font-family: 'Lora', serif;
+	font-weight: bold;
+}
+
+//color-------------------------------------------------
+$color-01: #FFF; //白
+
+$color-02: #0084ff; //明るい青
+
+$color-03: #23033a; //暗い青
+
+$color-04: #f2f2f2; //ほぼ白
+
+//common-panel------------------------------------------
+
+
+//parts-------------------------------------------------
+.white {
+	color: #FFF;
+}
+.back-black {
+	background-color: rgba(0,0,0,0.6);
+}
+.tit {
+	text-align: center;
+}
+.mt0 {
+	margin-top: 0px;
+}
+.mb0 {
+	margin-bottom: 0px;
+}
+.block {
+	display: block;
+}
+.hidden-ss {
+	@media screen and (max-width: 479px) {
+		display: none;
+	}
+}
+.visible-ss {
+	@media screen and (min-width: 479px) {
+		display: none;
+	}
+}
+#pagetop {
+	margin-left: 85%;
+	@media screen and (min-width: 768px) {
+		margin-left: 90%;
+	}
+	p {
+		z-index: 100;
+	}
+	img {
+		width: 50px;
+		height: 50px;
+		@media screen and (min-width: 479px) {
+			width: 66px;
+			height: 67px;
+		}
+	}
+}
+
+//header------------------------------------------------
+#header {
+	background-color: $color-01;
+	height: 40px;
+	z-index: 100;
+	font-weight: bold;
+	box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.1);
+	a {
+		color: $color-02;
+		font-family: 'Lora', serif;
+	}
+	.logo {
+		font-size: 25px;
+		margin: 10px 0 0 10px; 
+	}
+	.uk-navbar-nav {
+		a:hover {
+			text-decoration: none;
+		}
+		a {
+			padding: 0;
+		}
+	}
+	.uk-button-dropdown {
+		background-color: $color-01;
+		margin-top: 5px;
+	}
+	.uk-nav {
+		.uk-grid {
+           margin-left: 0px;
+			>* {
+		   	 	padding-left: 0px;
+			}
+		}
+	}
+}
+.header_icon {
+	header: 40px;
+}
+
+#footer {
+	background-color: $color-03;
+	height: auto;
+	color: $color-01;
+	position: relative;
+	padding: 20px 0px 20px 30px;
+	font-weight: bold;
+	h2 {
+		color: $color-01;
+		font-family: 'Lora', serif;
+		padding-left: 10px; 
+	}
+	.footer-work {
+		display: inline-block;
+		a {
+			color: $color-01;
+		}
+		a:hover {
+			color: $color-02;
+		}	
+	}
+}
+
+
+
+
+
+.page-tit {
+	text-align: center;
+	margin-top: 20px;
+}
+.form-content {
+	text-align: center;
+	color: white;
+}
+.flex {
+	display: flex; /* 要素をflexboxに対応させる */
+	align-items: center; /* 縦方向の中央揃え */
+	justify-content: center; /* 横方向の中央揃え */
+	flex-direction: column; /* 子要素の並びを上から下にする（要素の改行に対応） */
+}
+
+.mt0 {
+	margin: 0px;
+}
+.member {
+	color: white;
+}
+.coment {
+	background-color: rgba(255,255,255,0.8);
+	padding-left: 13px;
+	padding-right: 12px;
+	h3 {
+		text-align: center;
+		margin:10px 0 5px 0;
+	}
+	@media screen and (max-width: 479px) {
+			
+	}
+	.text-coment {
+		min-height: 230px; 
+		max-height: 150px; 
+		overflow: scroll;
+	}
+}
+
+.bbs-content {
+	margin-bottom: 20px;
+	@media screen and (max-width: 479px) {
+		padding: 20px;
+		background-color: rgba(0,0,0,0.6);	
+	}
+	.back-black {
+		padding: 10px 0;
+	}
+}
+
+//backgroundアニメーション
+@keyframes home {
+ 0% {background-image: url(/assets/home/01_01.png);}
+ 50% {background-image: url(/assets/home/01_01.png);}
+ 100% {background-image: url(/assets/home/01_01.png);}
+}
+@keyframes home_ss {
+ 0% {background-image: url(/assets/home/01_01_ss.jpg);}
+ 50% {background-image: url(/assets/home/01_02_ss.jpg);}
+ 100% {background-image: url(/assets/home/01_01_ss.jpg);}
+}
+@keyframes Swallows {
+ 0% {background-image: url(/assets/Swallows/01.jpg);}
+ 50% {background-image: url(/assets/Swallows/02.jpg);;}
+ 100% {background-image: url(/assets/Swallows/01.jpg);}
+}
+@keyframes Swallows_ss {
+ 0% {background-image: url(/assets/Swallows/01_ss.jpg);}
+ 50% {background-image: url(/assets/Swallows/02_ss.jpg);;}
+ 100% {background-image: url(/assets/Swallows/01_ss.jpg);}
+}
+@keyframes Giants {
+ 0% {background-image: url(/assets/Giants/01.jpg);}
+ 50% {background-image: url(/assets/Giants/02.jpg);;}
+ 100% {background-image: url(/assets/Giants/01.jpg);}
+}
+@keyframes Giants_ss {
+ 0% {background-image: url(/assets/Giants/01_ss.jpg);}
+ 50% {background-image: url(/assets/Giants/02_ss.jpg);;}
+ 100% {background-image: url(/assets/Giants/01_ss.jpg);}
+}
+@keyframes Tigers {
+ 0% {background-image: url(/assets/Tigers/01.jpg);}
+ 50% {background-image: url(/assets/Tigers/02.jpg);;}
+ 100% {background-image: url(/assets/Tigers/01.jpg);}
+}
+@keyframes Tigers_ss {
+ 0% {background-image: url(/assets/Tigers/01_ss.jpg);}
+ 50% {background-image: url(/assets/Tigers/02_ss.jpg);;}
+ 100% {background-image: url(/assets/Tigers/01_ss.jpg);}
+}
+@keyframes Carp {
+ 0% {background-image: url(/assets/Carp/01.jpg);}
+ 50% {background-image: url(/assets/Carp/02.jpg);;}
+ 100% {background-image: url(/assets/Carp/01.jpg);}
+}
+@keyframes Carp_ss {
+ 0% {background-image: url(/assets/Carp/01_ss.jpg);}
+ 50% {background-image: url(/assets/Carp/02_ss.jpg);;}
+ 100% {background-image: url(/assets/Carp/01_ss.jpg);}
+}
+@keyframes Dragons {
+ 0% {background-image: url(/assets/Dragons/01.jpg);}
+ 50% {background-image: url(/assets/Dragons/02.jpg);;}
+ 100% {background-image: url(/assets/Dragons/01.jpg);}
+}
+@keyframes Dragons_ss {
+ 0% {background-image: url(/assets/Dragons/01_ss.jpg);}
+ 50% {background-image: url(/assets/Dragons/02_ss.jpg);;}
+ 100% {background-image: url(/assets/Dragons/01_ss.jpg);}
+}
+@keyframes Baystars {
+ 0% {background-image: url(/assets/Baystars/01.jpg);}
+ 50% {background-image: url(/assets/Baystars/02.jpg);;}
+ 100% {background-image: url(/assets/Baystars/01.jpg);}
+}
+@keyframes Baystars_ss {
+ 0% {background-image: url(/assets/Baystars/01_ss.jpg);}
+ 50% {background-image: url(/assets/Baystars/02_ss.jpg);;}
+ 100% {background-image: url(/assets/Baystars/01_ss.jpg);}
+}
+@keyframes Hawks {
+ 0% {background-image: url(/assets/Hawks/01.jpg);}
+ 50% {background-image: url(/assets/Hawks/02.jpg);;}
+ 100% {background-image: url(/assets/Hawks/01.jpg);}
+}
+@keyframes Hawks_ss {
+ 0% {background-image: url(/assets/Hawks/01_ss.jpg);}
+ 50% {background-image: url(/assets/Hawks/02_ss.jpg);;}
+ 100% {background-image: url(/assets/Hawks/01_ss.jpg);}
+}
+@keyframes Fighters {
+ 0% {background-image: url(/assets/Fighters/01.jpg);}
+ 50% {background-image: url(/assets/Fighters/02.jpg);;}
+ 100% {background-image: url(/assets/Fighters/01.jpg);}
+}
+@keyframes Fighters_ss {
+ 0% {background-image: url(/assets/Fighters/01_ss.jpg);}
+ 50% {background-image: url(/assets/Fighters/02_ss.jpg);;}
+ 100% {background-image: url(/assets/Fighters/01_ss.jpg);}
+}
+@keyframes Marines {
+ 0% {background-image: url(/assets/Marines/01.jpg);}
+ 50% {background-image: url(/assets/Marines/02.jpg);;}
+ 100% {background-image: url(/assets/Marines/01.jpg);}
+}
+@keyframes Marines_ss {
+ 0% {background-image: url(/assets/Marines/01_ss.jpg);}
+ 50% {background-image: url(/assets/Marines/02_ss.jpg);;}
+ 100% {background-image: url(/assets/Marines/01_ss.jpg);}
+}
+@keyframes Lions {
+ 0% {background-image: url(/assets/Lions/01.jpg);}
+ 50% {background-image: url(/assets/Lions/02.jpg);;}
+ 100% {background-image: url(/assets/Lions/01.jpg);}
+}
+@keyframes Lions_ss {
+ 0% {background-image: url(/assets/Lions/01_ss.jpg);}
+ 50% {background-image: url(/assets/Lions/02_ss.jpg);;}
+ 100% {background-image: url(/assets/Lions/01_ss.jpg);}
+}
+@keyframes Buffaloes {
+ 0% {background-image: url(/assets/Buffaloes/01.jpg);}
+ 50% {background-image: url(/assets/Buffaloes/02.jpg);;}
+ 100% {background-image: url(/assets/Buffaloes/01.jpg);}
+}
+@keyframes Buffaloes_ss {
+ 0% {background-image: url(/assets/Buffaloes/01_ss.jpg);}
+ 50% {background-image: url(/assets/Buffaloes/02_ss.jpg);;}
+ 100% {background-image: url(/assets/Buffaloes/01_ss.jpg);}
+}
+@keyframes Eagles {
+ 0% {background-image: url(/assets/Eagles/01.jpg);}
+ 50% {background-image: url(/assets/Eagles/02.jpg);;}
+ 100% {background-image: url(/assets/Eagles/01.jpg);}
+}
+@keyframes Eagles_ss {
+ 0% {background-image: url(/assets/Eagles/01_ss.jpg);}
+ 50% {background-image: url(/assets/Eagles/02_ss.jpg);;}
+ 100% {background-image: url(/assets/Eagles/01_ss.jpg);}
+}
+
+
+#home {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 110%;
+    background-color: #000;
+    animation: home_ss 10s linear infinite;
+    @media screen and (min-width: 479px) {
+		animation: home 10s linear infinite;
+	}
+}
+
+#home-01 {
+	height: 100vh;
+	text-align: center;
+	.tit {
+		color: white;
+		font-size: 30px;
+		@media screen and (min-width: 479px) {
+			font-size: 30px;
+		}
+		@media screen and (min-width: 968px) {
+			font-size: 50px;
+		}
+	}
+}
+.home-tit {
+	color: white;
+	font-size: 30px;
+	text-align: center;
+	margin: 50px 0 30px 0;
+	@media screen and (min-width: 479px) {
+		font-size: 40px;
+	}
+	@media screen and (min-width: 968px) {
+		margin-top: 0px;
+	}
+}
+#home-02 {
+	background-color: rgba(0,0,0,0.8);
+	height: 100vh;
+	color: white;
+}
+#home-03 {
+	@media screen and (min-width: 968px) {
+		height: 100vh;
+	}
+	background-color: rgba(25,135,22,0.6);
+	padding-bottom: 40px;
+}
+#home-04 {
+	@media screen and (min-width: 968px) {
+		height: 100vh;
+	}
+	background-color: rgba(25,22,135,0.6);
+	padding-bottom: 40px;
+}
+
+//------------------球団ページ--------------------
+#Giants {
+	background-attachment: fixed;
+	background-size: 110%;
+    background-color: #fff;
+    @media screen and (min-width: 479px) {
+    	animation: Giants 20s linear infinite;
+    }
+    animation: Giants_ss 20s linear infinite;
+    padding-bottom: 20px;
+}
+#Swallows {
+	background-attachment: fixed;
+	background-size: 110%;
+    background-color: #000;
+    @media screen and (min-width: 479px) {
+    	animation: Swallows 20s linear infinite;
+    }
+    animation: Swallows_ss 20s linear infinite;
+    padding-bottom: 20px;
+}
+#Swallows-01 {
+	height: 100vh;
+	display: flex; /* 要素をflexboxに対応させる */
+	align-items: center; /* 縦方向の中央揃え */
+	justify-content: center; /* 横方向の中央揃え */
+	flex-direction: column; /* 子要素の並びを上から下にする（要素の改行に対応） */
+}
+#Tigers {
+	background-attachment: fixed;
+	background-size: 110%;
+    background-color: #000;
+    @media screen and (min-width: 479px) {
+    	animation: Tigers 20s linear infinite;
+    }
+    animation: Tigers_ss 20s linear infinite;
+    padding-bottom: 20px;
+}
+#Carp {
+	background-attachment: fixed;
+	background-size: 110%;
+    background-color: #000;
+    @media screen and (min-width: 479px) {
+    	animation: Carp 20s linear infinite;
+    }
+    animation: Carp_ss 20s linear infinite;
+    padding-bottom: 20px;
+}
+#Dragons {
+	background-attachment: fixed;
+	background-size: 110%;
+    background-color: #000;
+    @media screen and (min-width: 479px) {
+    	animation: Dragons 20s linear infinite;
+    }
+    animation: Dragons_ss 20s linear infinite;
+    padding-bottom: 20px;
+}
+#Baystars {
+	background-attachment: fixed;
+	background-size: 110%;
+    background-color: #000;
+    @media screen and (min-width: 479px) {
+    	animation: Baystars 20s linear infinite;
+    }
+    animation: Baystars_ss 20s linear infinite;
+    padding-bottom: 20px;
+}
+#Hawks {
+	background-attachment: fixed;
+	background-size: 110%;
+    background-color: #000;
+    @media screen and (min-width: 479px) {
+    	animation: Hawks 20s linear infinite;
+    }
+    animation: Hawks_ss 20s linear infinite;
+    padding-bottom: 20px;
+}
+#Fighters {
+	background-attachment: fixed;
+	background-size: 110%;
+    background-color: #000;
+    @media screen and (min-width: 479px) {
+    	animation: Fighters 20s linear infinite;
+    }
+    animation: Fighters_ss 20s linear infinite;
+    padding-bottom: 20px;
+}
+#Marines {
+	background-attachment: fixed;
+	background-size: 110%;
+    background-color: #000;
+    @media screen and (min-width: 479px) {
+    	animation: Marines 20s linear infinite;
+    }
+    animation: Marines_ss 20s linear infinite;
+    padding-bottom: 20px;
+}
+#Lions {
+	background-attachment: fixed;
+	background-size: 110%;
+    background-color: #000;
+    @media screen and (min-width: 479px) {
+    	animation: Lions 20s linear infinite;
+    }
+    animation: Lions_ss 20s linear infinite;
+    padding-bottom: 20px;
+}
+#Buffaloes {
+	background-attachment: fixed;
+	background-size: 110%;
+    background-color: #000;
+    @media screen and (min-width: 479px) {
+    	animation: Buffaloes 20s linear infinite;
+    }
+    animation: Buffaloes_ss 20s linear infinite;
+    padding-bottom: 20px;
+}
+#Eagles {
+	background-attachment: fixed;
+	background-size: 110%;
+    background-color: #000;
+    @media screen and (min-width: 479px) {
+    	animation: Eagles 20s linear infinite;
+    }
+    animation: Eagles_ss 20s linear infinite;
+    padding-bottom: 20px;
+}
+

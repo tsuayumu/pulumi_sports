@@ -1,0 +1,35 @@
+div#pagetop
+  p.uk-float-right[style="display: block; position: fixed; bottom: 0px; margin-top: 0px;"]
+    a[href="#home-01" data-uk-smooth-scroll=""]
+      img[src="https://www.mymall.co.jp/cmscp/wp-content/themes/mymall/img/common/footer/pagetop.png" alt="ページの上部へ"]
+
+nav#header.uk-navbar[data-uk-sticky]
+  ul.uk-navbar-nav
+    li
+      a[href="#{root_path}"]
+        span.logo
+          | プロ野球開幕スタメン
+  div.uk-navbar-flip
+    ul.uk-navbar-nav.hidden-ss
+      li
+        = link_to "home", root_path
+      - central_teams_for_views.each do |team|
+        li
+          = link_to image_tag("shared/team-logos/#{team.name_en}.jpg", style:  "height: 40px", alt: team.name), index_opening_starting_lineup_path(year: 2020, team: team.name_en)
+      - pacific_teams_for_views.each do |team|
+        li
+          = link_to image_tag("shared/team-logos/#{team.name_en}.jpg", style:  "height: 40px", alt: team.name), index_opening_starting_lineup_path(year: 2020, team: team.name_en)
+  div.uk-button-dropdown.visible-ss[data-uk-dropdown]
+    button.uk-button
+      | Hover me <i class="uk-icon-caret-down"></i>
+    div.uk-dropdown
+      ul.uk-nav.uk-nav-dropdown
+        li
+          = link_to "home", root_path
+        div.uk-grid.uk-grid-width-1-2
+          - central_teams_for_views.each do |team|
+            li
+              = link_to image_tag("shared/team-logos/#{team.name_en}.jpg", alt: team.name), index_opening_starting_lineup_path(year: 2020, team: team.name_en)
+          - pacific_teams_for_views.each do |team|
+            li
+              = link_to image_tag("shared/team-logos/#{team.name_en}.jpg", alt: team.name), index_opening_starting_lineup_path(year: 2020, team: team.name_en)

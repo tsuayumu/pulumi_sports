@@ -35,6 +35,8 @@ const appDeployment = new k8s.apps.v1.Deployment("rails-deployment", {
                         { name: "DB_HOST", value: db.instance.firstIpAddress },
                         { name: "DB_USERNAME", value: config.dbUsername },
                         { name: "DB_PASSWORD", value: config.dbPassword },
+                        { name: "SECRET_KEY_BASE", value: config.secretKeyBase },
+                        { name: "RAILS_ENV", value: "production" }
                     ],
                     ports: [{ containerPort: appPort }],
                 }],

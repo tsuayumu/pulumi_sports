@@ -8,9 +8,12 @@ const config = new Config();
 export const dockerUsername = config.require("dockerUsername");
 export const dockerPassword = config.require("dockerPassword");
 
-/// PostgreSQL config
+/// MySQL config
 export const dbUsername = config.require("dbUsername") || "rails";
 export const dbPassword = config.require("dbPassword");
+
+/// Rails
+export const secretKeyBase = config.require("secretKeyBase");
 
 /// Kubernetes config
 export const clusterNodeCount = config.getNumber("clusterNodeCount") || 3;
