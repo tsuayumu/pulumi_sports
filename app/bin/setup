@@ -44,5 +44,5 @@ FileUtils.chdir APP_ROOT do
   system! "bin/rails assets:precompile"
 
   puts "\n== Starting application server =="
-  system! "bin/rails s -p 3000"
+  system! "bin/rails s -p 80"
 end

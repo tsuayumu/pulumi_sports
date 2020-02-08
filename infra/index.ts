@@ -19,7 +19,7 @@ const appImage = new docker.Image("rails-app", {
 });
 
 // Deploy the app container as a Kubernetes load balanced service.
-const appPort = 3000;
+const appPort = 80;
 const appLabels = { app: "rails-app" };
 const appDeployment = new k8s.apps.v1.Deployment("rails-deployment", {
     spec: {
