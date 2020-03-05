@@ -13,7 +13,12 @@ export const dbUsername = config.require("dbUsername") || "rails";
 export const dbPassword = config.require("dbPassword");
 
 /// Rails
-export const secretKeyBase = config.require("secretKeyBase");
+export const secretKeyBase = config.require("secretKeyBase")
+;
+export const twitterConsumerSecret = config.require("twitterConsumerSecret")
+;
+export const twitterAccessTokenSecret = config.require("twitterAccessTokenSecret")
+;
 
 /// Kubernetes config
 export const clusterNodeCount = config.getNumber("clusterNodeCount") || 3;

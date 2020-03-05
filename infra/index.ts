@@ -10,7 +10,7 @@ import * as db from "./db";
 // Get the GCR repository for our app container, and build and publish the app image.
 const appImage = new docker.Image("rails-app", {
     imageName: `${config.dockerUsername}/${pulumi.getProject()}_${pulumi.getStack()}`,
-    build: "../app",
+    build: "../sports_for_docker",
     registry: {
         server: "docker.io",
         username: config.dockerUsername,
@@ -36,7 +36,9 @@ const appDeployment = new k8s.apps.v1.Deployment("rails-deployment", {
                         { name: "DB_USERNAME", value: config.dbUsername },
                         { name: "DB_PASSWORD", value: config.dbPassword },
                         { name: "SECRET_KEY_BASE", value: config.secretKeyBase },
-                        { name: "RAILS_ENV", value: "production" }
+                        { name: "RAILS_ENV", value: "production" },
+                        { name: "TWITTER_CONSUMER_SECRET", value: config.twitterConsumerSecret },
+                        { name: "TWITTER_ACCESS_TOKEN_SECRET", value: config.twitterAccessTokenSecret }
                     ],
                     ports: [{ containerPort: appPort }],
                 }],
