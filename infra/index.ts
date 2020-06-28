@@ -8,9 +8,29 @@ import * as config from "./config";
 import * as db from "./db";
 
 // Get the GCR repository for our app container, and build and publish the app image.
-const appImage = new docker.Image("rails-app", {
-    imageName: `${config.dockerUsername}/${pulumi.getProject()}_${pulumi.getStack()}`,
-    build: "../sports_for_docker",
+const appImageBackend = new docker.Image("rails-app", {
+    imageName: `${config.dockerUsername}/${pulumi.getProject()}_${pulumi.getStack()}_backend`,
+    build: "../backend",
+    registry: {
+        server: "docker.io",
+        username: config.dockerUsername,
+        password: config.dockerPassword,
+    },
+});
+
+const appImageFrontend = new docker.Image("nuxt-app", {
+    imageName: `${config.dockerUsername}/${pulumi.getProject()}_${pulumi.getStack()}_frontend`,
+    build: "../frontend",
+    registry: {
+        server: "docker.io",
+        username: config.dockerUsername,
+        password: config.dockerPassword,
+    },
+});
+
+const appImageWeb = new docker.Image("web", {
+    imageName: `${config.dockerUsername}/${pulumi.getProject()}_${pulumi.getStack()}_web`,
+    build: "../web",
     registry: {
         server: "docker.io",
         username: config.dockerUsername,
@@ -19,7 +39,9 @@ const appImage = new docker.Image("rails-app", {
 });
 
 // Deploy the app container as a Kubernetes load balanced service.
-const appPort = 80;
+const appBackendPort = 3001;
+const appFrontendPort = 3000;
+const appWebPort = 80;
 const appLabels = { app: "rails-app" };
 const appDeployment = new k8s.apps.v1.Deployment("rails-deployment", {
     spec: {
@@ -28,20 +50,32 @@ const appDeployment = new k8s.apps.v1.Deployment("rails-deployment", {
         template: {
             metadata: { labels: appLabels },
             spec: {
-                containers: [{
-                    name: "rails-app",
-                    image: appImage.imageName,
-                    env: [
-                        { name: "DB_HOST", value: db.instance.firstIpAddress },
-                        { name: "DB_USERNAME", value: config.dbUsername },
-                        { name: "DB_PASSWORD", value: config.dbPassword },
-                        { name: "SECRET_KEY_BASE", value: config.secretKeyBase },
-                        { name: "RAILS_ENV", value: "production" },
-                        { name: "TWITTER_CONSUMER_SECRET", value: config.twitterConsumerSecret },
-                        { name: "TWITTER_ACCESS_TOKEN_SECRET", value: config.twitterAccessTokenSecret }
-                    ],
-                    ports: [{ containerPort: appPort }],
-                }],
+                containers: [
+                    {
+                        name: "rails-app",
+                        image: appImageBackend.imageName,
+                        env: [
+                            { name: "DB_HOST", value: db.instance.firstIpAddress },
+                            { name: "DB_USERNAME", value: config.dbUsername },
+                            { name: "DB_PASSWORD", value: config.dbPassword },
+                            { name: "SECRET_KEY_BASE", value: config.secretKeyBase },
+                            { name: "RAILS_ENV", value: "production" },
+                            { name: "TWITTER_CONSUMER_SECRET", value: config.twitterConsumerSecret },
+                            { name: "TWITTER_ACCESS_TOKEN_SECRET", value: config.twitterAccessTokenSecret }
+                        ],
+                        ports: [{ containerPort: appBackendPort }],
+                    },
+                    {
+                        name: "nuxt-app",
+                        image: appImageFrontend.imageName,
+                        ports: [{ containerPort: appFrontendPort }]
+                    },
+                    {
+                        name: "web",
+                        image: appImageWeb.imageName,
+                        ports: [{ containerPort: appWebPort }]
+                    }
+                ],
             },
         },
     },
@@ -50,7 +84,7 @@ const appService = new k8s.core.v1.Service("rails-service", {
     metadata: { labels: appDeployment.metadata.labels },
     spec: {
         type: "LoadBalancer",
-        ports: [{ port: appPort, targetPort: appPort }],
+        ports: [{ port: appWebPort, targetPort: appWebPort }],
         selector: appDeployment.spec.template.metadata.labels,
     },
 }, { provider: cluster.provider });
@@ -59,7 +93,7 @@ const appService = new k8s.core.v1.Service("rails-service", {
 export let appName = appDeployment.metadata.name;
 
 // Export the service's IP address.
-export let appAddress = appService.status.apply(s => `http://${s.loadBalancer.ingress[0].ip}:${appPort}`);
+export let appAddress = appService.status.apply(s => `http://${s.loadBalancer.ingress[0].ip}:${appWebPort}`);
 
 // Export the database address for client connections.
 export let dbAddress = db.instance.firstIpAddress;

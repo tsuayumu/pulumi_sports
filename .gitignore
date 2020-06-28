@@ -1,1 +1,5 @@
-infra/Pulumi.sports-rails.yaml
+/infra/Pulumi.sports-rails.yaml
+/infra/Pulumi.gcp-rails-dev.yaml
+/infra/Pulumi.stage.yaml
+/backend/*
+/frontend/*
