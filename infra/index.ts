@@ -68,7 +68,10 @@ const appDeployment = new k8s.apps.v1.Deployment("rails-deployment", {
                     {
                         name: "nuxt-app",
                         image: appImageFrontend.imageName,
-                        ports: [{ containerPort: appFrontendPort }]
+                        ports: [{ containerPort: appFrontendPort }],
+                        env: [
+                            { name: "NODE_ENV", value: "production" }
+                        ]
                     },
                     {
                         name: "web",
